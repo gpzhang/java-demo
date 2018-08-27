@@ -1,4 +1,7 @@
-import java.util.ArrayList;
+import spi.Log;
+
+import java.util.Iterator;
+import java.util.ServiceLoader;
 
 /**
  * @author haishen
@@ -7,7 +10,11 @@ import java.util.ArrayList;
 public class Main {
 
     public static void main(String[] args) {
-        ArrayList<String> list = new ArrayList<String>();
-        list.add("123");
+        ServiceLoader<Log> serviceLoader = ServiceLoader.load(Log.class);
+        Iterator<Log> iterator = serviceLoader.iterator();
+        while (iterator.hasNext()) {
+            Log log = iterator.next();
+            log.execute();
+        }
     }
 }
