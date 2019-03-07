@@ -1,4 +1,4 @@
-package queue;
+package queue.block;
 
 import java.util.concurrent.PriorityBlockingQueue;
 

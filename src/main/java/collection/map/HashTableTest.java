@@ -1,6 +1,6 @@
-package collection;
+package collection.map;
 
-import java.util.Properties;
+import java.util.Hashtable;
 
 /**
  * 通用Map
@@ -19,8 +19,8 @@ import java.util.Properties;
  * @author haishen
  * @date 2019/2/26
  */
-public class MapTest {
+public class HashTableTest {
     public static void main(String[] args) {
-        Properties properties = new Properties();
+        Hashtable<String, String> hashtable = new Hashtable();
     }
 }
