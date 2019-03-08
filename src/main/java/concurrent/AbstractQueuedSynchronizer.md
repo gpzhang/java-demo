@@ -1320,18 +1320,23 @@ public abstract class AbstractQueuedSynchronizer extends AbstractOwnableSynchron
         public final void await() throws InterruptedException {
             if (Thread.interrupted())
                 throw new InterruptedException();
+            // 1. 将当前线程包装成Node，尾插入到等待队列中
             Node node = addConditionWaiter();
+            // 2. 释放当前线程所占用的lock，在释放的过程中会唤醒同步队列中的下一个节点
             int savedState = fullyRelease(node);
             int interruptMode = 0;
             while (!isOnSyncQueue(node)) {
+            	// 3. 当前线程进入到等待状态
                 LockSupport.park(this);
                 if ((interruptMode = checkInterruptWhileWaiting(node)) != 0)
                     break;
             }
+            // 4. 自旋等待获取到同步状态（即获取到lock）
             if (acquireQueued(node, savedState) && interruptMode != THROW_IE)
                 interruptMode = REINTERRUPT;
             if (node.nextWaiter != null) // clean up if cancelled
                 unlinkCancelledWaiters();
+            // 5. 处理被中断的情况
             if (interruptMode != 0)
                 reportInterruptAfterWait(interruptMode);
         }
