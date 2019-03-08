@@ -1,7 +1,7 @@
 
 ### ThreadPoolExecutor 线程池核心源码分析注释
 
-```json
+```text
 
 import java.util.*;
 import java.util.concurrent.*;
