@@ -20,11 +20,15 @@ import java.nio.channels.WritableByteChannel;
  * <p>
  * 我们可以自定义类加载器，只需继承ClassLoader抽象类，并重写findClass方法
  * （如果要打破双亲委派模型，需要在实现类中直接重写loadClass方法）。原因可以查看ClassLoader的源码：
+ * 例如：tomcat自定义的类加载器的WebAppClassLoader重写了loadClass()方法
+ * 对于一些未加载的非基础类(Object,String等)，各个web应用自己的类加载器(WebAppClassLoader)会优先加载，
+ * 加载不到时再交给commonClassLoader走双亲委托。
+ * 具体的加载逻辑位于WebAppClassLoaderBase.loadClass()方法中
  */
 
 /**
  *
- * 虚拟机在进行类加载的时候会d调用类加载器的私有方法，loadClassInternal(String name)；
+ * 虚拟机在进行类加载的时候会调用类加载器的私有方法，loadClassInternal(String name)；
  * loadClass(name)方法内部会调用loadClass(String name, boolean resolve)；
  *
  *  这个是ClassLoader中的loadClass方法，大致流程如下：
