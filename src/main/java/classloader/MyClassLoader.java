@@ -27,32 +27,34 @@ import java.nio.channels.WritableByteChannel;
  */
 
 /**
- *
  * 虚拟机在进行类加载的时候会调用类加载器的私有方法，loadClassInternal(String name)；
  * loadClass(name)方法内部会调用loadClass(String name, boolean resolve)；
- *
- *  这个是ClassLoader中的loadClass方法，大致流程如下：
-    1）检查类是否已加载，如果是则不用再重新加载了；
-    2）如果未加载，则通过父类加载（依次递归）或者启动类加载器（bootstrap）加载；
-    3）如果还未找到，则调用本加载器的findClass方法；
- *
- // This method is invoked by the virtual machine to load a class.
- private Class<?> loadClassInternal(String name) throws ClassNotFoundException{
-    // For backward compatibility, explicitly lock on 'this' when
-    // the current class loader is not parallel capable.
-    if (parallelLockMap == null) {
-        synchronized (this) {
-            return loadClass(name);
-        }
-    } else {
-    return loadClass(name);
-    }
- }
+ * <p>
+ * 这个是ClassLoader中的loadClass方法，大致流程如下：
+ * 1）检查类是否已加载，如果是则不用再重新加载了；
+ * 2）如果未加载，则通过父类加载（依次递归）或者启动类加载器（bootstrap）加载；
+ * 3）如果还未找到，则调用本加载器的findClass方法；
+ * <p>
+ * // This method is invoked by the virtual machine to load a class.
+ * private Class<?> loadClassInternal(String name) throws ClassNotFoundException{
+ * // For backward compatibility, explicitly lock on 'this' when
+ * // the current class loader is not parallel capable.
+ * if (parallelLockMap == null) {
+ * synchronized (this) {
+ * return loadClass(name);
+ * }
+ * } else {
+ * return loadClass(name);
+ * }
+ * }
  */
 public class MyClassLoader extends ClassLoader {
 
     public MyClassLoader() {
-
+        /**
+         * 这个构造方法中去调用ClassLoader无参构造方法
+         * 从ClassLoader源码中可以得出：调用此构造方法默认会让系统类加载器成为该类加载器的父加载器
+         */
     }
 
     public MyClassLoader(ClassLoader parent) {
