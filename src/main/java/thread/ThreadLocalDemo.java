@@ -6,12 +6,12 @@ package thread;
  */
 public class ThreadLocalDemo {
 
-    private static ThreadLocal<UserInfo> ii = new ThreadLocal<>();
+    private static ThreadLocal<UserInfo> userInfoThreadLocal = new ThreadLocal<>();
     private static int k = 0;
 
     public static void main(String[] args) {
 
-        System.out.println("ThreadLocal实例:" + ii);
+        System.out.println("ThreadLocal实例:" + userInfoThreadLocal);
 
         for (int i = 0; i < 5; i++) {
             Thread thread = new Thread(new MyThread());
@@ -23,18 +23,19 @@ public class ThreadLocalDemo {
 
         @Override
         public void run() {
-            if (ii.get() == null) {
+            if (userInfoThreadLocal.get() == null) {
                 UserInfo userInfo = new UserInfo();
                 userInfo.setAge(12);
                 userInfo.setName(Thread.currentThread().getName());
-                ii.set(userInfo);
+                userInfoThreadLocal.set(userInfo);
             }
-            UserInfo value = ii.get();
+            UserInfo value = userInfoThreadLocal.get();
+            userInfoThreadLocal.remove();
             UserInfo userInfo = new UserInfo();
             userInfo.setAge(value.getAge() + 10);
             userInfo.setName(Thread.currentThread().getName());
-            ii.set(userInfo);
-            System.out.println("线程<" + Thread.currentThread().getName() + ">i值:" + ii.get());
+            userInfoThreadLocal.set(userInfo);
+            System.out.println("线程<" + Thread.currentThread().getName() + ">i值:" + userInfoThreadLocal.get());
         }
     }
 }

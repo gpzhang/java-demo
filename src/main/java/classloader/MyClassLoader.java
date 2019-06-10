@@ -63,7 +63,9 @@ public class MyClassLoader extends ClassLoader {
 
     @Override
     protected Class<?> findClass(String name) throws ClassNotFoundException {
-        File file = new File("/Users/haishen/data/HaiShen.class");
+        File file = new File("/Users/haishen/study/java-demo/target/classes/Main.class");
+//        File file = new File("/Users/haishen/data/HaiShen.class");
+
         try {
             byte[] bytes = getClassBytes(file);
             //defineClass方法可以把二进制流字节组成的文件转换为一个java.lang.Class

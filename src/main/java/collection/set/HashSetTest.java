@@ -15,6 +15,8 @@ public class HashSetTest {
         Set<String> stringSet = new HashSet<>(1);
         stringSet.add(null);
         stringSet.add("123");
+        stringSet.remove("123");
+        stringSet.contains("123");
         System.out.println(stringSet.size());
     }
 }

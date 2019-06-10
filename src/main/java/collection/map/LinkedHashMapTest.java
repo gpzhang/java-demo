@@ -1,6 +1,8 @@
 package collection.map;
 
+import java.util.Iterator;
 import java.util.LinkedHashMap;
+import java.util.Set;
 
 /**
  * 通用Map
@@ -23,5 +25,19 @@ public class LinkedHashMapTest {
     public static void main(String[] args) {
         LinkedHashMap<String, String> linkedHashMap = new LinkedHashMap();
         linkedHashMap.put("ear", "er");
+        linkedHashMap.put("ear02", "er");
+        linkedHashMap.put("ear01", "er");
+        linkedHashMap.get("ear");
+        linkedHashMap.getOrDefault("ear", "34");
+        linkedHashMap.replace("ear", "34");
+        linkedHashMap.remove("ear");
+
+        Set keys = linkedHashMap.keySet();
+        Iterator ite = keys.iterator();
+        while (ite.hasNext()) {
+            String key = (String) ite.next();
+            System.out.println("key:{" + key + "}--->value:{" + linkedHashMap.get(key) + "}");
+        }
+
     }
 }

@@ -28,9 +28,12 @@ package classloader;
 public class Main {
 
     public static void main(String[] args) throws Exception {
+        String classFilePath = Main.class.getResource("/").getPath();
+        System.out.println(classFilePath);
+
         MyClassLoader myClassLoader = new MyClassLoader();
-        Class<?> clazzs = myClassLoader.loadClass("HaiShen");
-        Class<?> clazz = Class.forName("HaiShen", true, myClassLoader);
+        Class<?> clazz = myClassLoader.loadClass("Main");
+//        Class<?> clazz = Class.forName("HaiShen", true, myClassLoader);
         Object obj = clazz.newInstance();
 
         System.out.println(obj);
