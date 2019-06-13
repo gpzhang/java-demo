@@ -6,7 +6,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 /**
- * io  文件io、网络io
+ * IO可以笼统的分为：文件io、网络io
  *
  * @author haishen
  * @date 2019/5/26

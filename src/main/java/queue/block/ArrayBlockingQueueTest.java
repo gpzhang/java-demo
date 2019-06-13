@@ -6,6 +6,10 @@ import java.util.concurrent.TimeUnit;
 /**
  * @author haishen
  * @date 2019/2/26
+ * 一个由数组支持的有界阻塞队列，在ArrayBlockingQueue内部，维护了一个定长数组，
+ * 以便缓存队列中的数据对象。此队列按 FIFO（先进先出）原则对元素进行排序。
+ * 创建其对象必须明确大小，像数组一样。在创建ArrayBlockingQueue时，
+ * 我们还可以控制对象的内部锁是否采用公平锁，默认采用非公平锁
  */
 public class ArrayBlockingQueueTest {
     public static void main(String[] args) throws InterruptedException {

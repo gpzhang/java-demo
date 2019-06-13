@@ -23,7 +23,7 @@ public class ThreadPoolDemo {
         FixedThreadPool fixedThreadPool = new FixedThreadPool();
         ExecutorService executorService = fixedThreadPool.getExecutorService();
         System.out.println("获取ExecutorService:" + executorService);
-        executorService.submit(new Runnable() {
+        executorService.execute(new Runnable() {
             @Override
             public void run() {
                 System.out.println(Thread.currentThread().getName() + "1开始执行！");

@@ -1,4 +1,4 @@
-package volatile_word;
+package keyword;
 
 /**
  * @author haishen

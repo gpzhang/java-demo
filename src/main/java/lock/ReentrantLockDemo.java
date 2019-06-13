@@ -1,5 +1,6 @@
 package lock;
 
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.ReentrantLock;
 
 /**
@@ -15,6 +16,15 @@ public class ReentrantLockDemo {
     private static ReentrantLock lock = new ReentrantLock();
 
     public static void main(String[] args) {
+        acquire();
+        acquireInterruptibly();
+        tryAcquireNanos();
+    }
+
+    /**
+     * 独占锁的获取和释放demo
+     */
+    private static void acquire() {
         for (int i = 0; i < 5; i++) {
             Thread thread = new Thread(() -> {
                 lock.lock();
@@ -29,4 +39,52 @@ public class ReentrantLockDemo {
             thread.start();
         }
     }
+
+    /**
+     * 可中断式锁的获取和释放demo
+     */
+    private static void acquireInterruptibly() {
+        for (int i = 0; i < 5; i++) {
+            Thread thread = new Thread(() -> {
+                try {
+                    lock.lockInterruptibly();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                try {
+                    Thread.sleep(120 * 1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } finally {
+                    lock.unlock();
+                }
+            });
+            thread.start();
+        }
+    }
+
+    /**
+     * 超时等待式获取锁和释放demo
+     */
+    private static void tryAcquireNanos() {
+        for (int i = 0; i < 5; i++) {
+            Thread thread = new Thread(() -> {
+                try {
+                    lock.tryLock(3 * 1000, TimeUnit.MICROSECONDS);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                try {
+                    Thread.sleep(120 * 1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } finally {
+                    lock.unlock();
+                }
+            });
+            thread.start();
+        }
+    }
+
+
 }
