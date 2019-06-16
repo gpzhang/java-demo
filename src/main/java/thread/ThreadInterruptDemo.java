@@ -6,6 +6,9 @@ package thread;
  * 线程中断的demo
  * <p>
  * Interrupt中断是线程的某一部分业务逻辑，而这部分业务逻辑需要线程去检查自己的中断状态（通过isInterrupted()）
+ * 中断判断的两种方式
+ * 1、Thread.currentThread().isInterrupted();实例方法，不会清除中断状态
+ * 2、Thread.interrupted();类方法，会清除中断状态
  * <p>
  * 当线程被阻塞的时候（调用了阻塞方法），比如被Object.wait,Thread.sleep和 Thread.join()和三种方法之一阻塞时。
  * 顺便也说一下wait()方法和sleep()方法的区别
@@ -19,9 +22,10 @@ package thread;
 public class ThreadInterruptDemo {
 
     public static void main(String[] args) {
-        Thread thread = new Thread(new MyInterruptBlockThread());
+        Thread thread = new Thread(new MyInterruptUnBlockThread());
         thread.start();
         thread.interrupt();
+
         System.out.println("执行了对线程:{" + thread.getName() + "}的中断操作！！！");
 
     }
@@ -36,6 +40,9 @@ public class ThreadInterruptDemo {
         @Override
         public void run() {
             while (true) {
+//                if (Thread.interrupted()) {
+//                    System.out.println("线程被设置中断，干点啥？");
+//                }
                 if (Thread.currentThread().isInterrupted()) {
                     System.out.println("线程被设置中断，干点啥？");
                 }

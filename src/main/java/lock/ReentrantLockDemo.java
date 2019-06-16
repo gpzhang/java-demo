@@ -17,8 +17,9 @@ public class ReentrantLockDemo {
 
     public static void main(String[] args) {
         acquire();
-        acquireInterruptibly();
+        acquireInterrputibly();
         tryAcquireNanos();
+
     }
 
     /**
@@ -43,7 +44,7 @@ public class ReentrantLockDemo {
     /**
      * 可中断式锁的获取和释放demo
      */
-    private static void acquireInterruptibly() {
+    private static void acquireInterrputibly() {
         for (int i = 0; i < 5; i++) {
             Thread thread = new Thread(() -> {
                 try {
@@ -85,6 +86,8 @@ public class ReentrantLockDemo {
             thread.start();
         }
     }
+
+
 
 
 }
