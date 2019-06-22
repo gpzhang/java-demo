@@ -19,6 +19,7 @@ public class HashMapTest {
         hashMap.remove("2");
         hashMap.replace("4", "666");
         hashMap.remove("2", "4");
+        hashMap.clear();
         System.out.println(hashMap.size());
 
         Set keys = hashMap.keySet();
