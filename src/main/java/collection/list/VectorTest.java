@@ -1,5 +1,6 @@
 package collection.list;
 
+import java.util.Iterator;
 import java.util.Vector;
 
 /**
@@ -16,5 +17,12 @@ public class VectorTest {
         vector.get(1);
         vector.remove("1");
         vector.remove(0);
+
+        System.out.println("*******");
+        Iterator<String> it = vector.iterator();
+
+        while (it.hasNext()) {
+            System.out.println(it.next());
+        }
     }
 }

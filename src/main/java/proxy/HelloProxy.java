@@ -17,6 +17,7 @@ public class HelloProxy implements InvocationHandler {
 
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+        System.out.println("proxy的类对象:" + proxy.getClass());
         System.out.println("代理类操作开始---->");
         method.invoke(target, args);
         System.out.println("代理类操作结束---->");

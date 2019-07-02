@@ -2,6 +2,7 @@ package collection.list;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -47,11 +48,17 @@ public class ArrayListTest {
         list.add(null);
         list.remove("1");
         list.remove(0);
-        String result = list.get(0);
         System.out.println(list.size());
-        System.out.println(result);
+        System.out.println(list.get(0));
 
         List<String> synArrayList = Collections.synchronizedList(new ArrayList<String>());
+
+        System.out.println("*******");
+        Iterator<String> it = list.iterator();
+
+        while (it.hasNext()) {
+            System.out.println(it.next());
+        }
 
     }
 }

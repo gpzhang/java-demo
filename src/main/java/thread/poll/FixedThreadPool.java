@@ -12,17 +12,17 @@ public class FixedThreadPool {
     /**
      * 核心线程数
      */
-    public static int CORE_POOL_SIZE = 1;
+    public static int CORE_POOL_SIZE = 10;
 
     /**
      * 最大线程线程数
      */
-    public static int MAX_POOL_SIZE = 1;
+    public static int MAX_POOL_SIZE = 15;
 
     /**
      * 空闲时线程退出时间:1秒
      */
-    public static long KEEP_ALIVE_TIME = 1L;
+    public static long KEEP_ALIVE_TIME = 3L;
 
     private volatile static ExecutorService executorService;
 

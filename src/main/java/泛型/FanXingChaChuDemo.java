@@ -1,4 +1,4 @@
-package collection.list;
+package 泛型;
 
 import java.util.Arrays;
 import java.util.List;

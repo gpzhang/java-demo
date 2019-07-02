@@ -2,6 +2,7 @@ package collection.map;
 
 import java.util.Iterator;
 import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -32,11 +33,30 @@ public class LinkedHashMapTest {
         linkedHashMap.replace("ear", "34");
         linkedHashMap.remove("ear");
 
+        /**
+         * key遍历。key遍历是底层是entry遍历的结果返回key
+         *
+         * 在设定LinkedHashMap按访问顺序输出时，按照key遍历的方式时，如果获取key对于的value
+         * 取下一个key时会抛ConcurrentModificationException异常，
+         * 原因是：get操作修改了modCount（元素修改次数）的值和初始化迭代器时设置值不一致了
+         */
         Set keys = linkedHashMap.keySet();
         Iterator ite = keys.iterator();
         while (ite.hasNext()) {
             String key = (String) ite.next();
             System.out.println("key:{" + key + "}--->value:{" + linkedHashMap.get(key) + "}");
+        }
+
+        System.out.println("************");
+
+        /**
+         * entry遍历
+         */
+        Set entrySet = linkedHashMap.entrySet();
+        Iterator iterator = entrySet.iterator();
+        while (iterator.hasNext()) {
+            Map.Entry<String, String> entry = (Map.Entry) iterator.next();
+            System.out.println("key:{" + entry.getKey() + "}--->value:{" + entry.getValue() + "}");
         }
 
     }

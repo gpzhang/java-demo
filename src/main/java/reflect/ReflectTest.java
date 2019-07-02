@@ -17,6 +17,10 @@ public class ReflectTest {
         Long idParam = 666L;
         Constructor<?>[] constructors = clazz.getConstructors();
         System.out.println(" Constructor<?>[].size:" + constructors.length);
+
+        /**
+         * 获取指定参数类型的构造函数
+         */
         Constructor<?> constr = clazz.getConstructor(argTypes);
         /**
          * 反射调用Article的有参构造函数创建Article实例
