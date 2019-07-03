@@ -10,7 +10,8 @@ public class VolatileTest {
 
     public static void main(String[] args) throws InterruptedException {
         Thread thread = new Thread(new Runnable() {
-            int i=0;
+            int i = 0;
+
             @Override
             public void run() {
                 while (!isOver) {
