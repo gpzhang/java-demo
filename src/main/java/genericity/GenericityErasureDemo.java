@@ -1,13 +1,15 @@
-package 泛型;
+package genericity;
 
 import java.util.Arrays;
 import java.util.List;
 
 /**
+ * 泛型擦除demo
+ *
  * @author haishen
  * @date 2019/3/13
  */
-public class FanXingChaChuDemo {
+public class GenericityErasureDemo {
 
     public static void main(String[] args) {
         demo();

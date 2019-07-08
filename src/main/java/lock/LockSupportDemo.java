@@ -6,7 +6,7 @@ import java.util.concurrent.locks.LockSupport;
  * @author haishen
  * @date 2019/3/8
  * <p>
- * 有一点需要需要的是：synchronzed致使线程阻塞，线程会进入到BLOCKED状态；
+ * 有一点需要需要的是：synchronized致使线程阻塞，线程会进入到BLOCKED状态；
  * *** BLOCKED状态: 阻塞状态是线程阻塞在进入synchronized关键字修饰的方法或代码块(获取锁)时的状态。
  * 而调用LockSupport方法阻塞线程会致使线程进入到WAITING状态。
  * *** WAITING状态: 处于这种状态的线程不会被分配CPU执行时间，它们要等待被显式地唤醒，否则会处于无限期等待的状态。

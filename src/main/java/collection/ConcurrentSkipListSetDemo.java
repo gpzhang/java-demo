@@ -9,5 +9,6 @@ import java.util.concurrent.ConcurrentSkipListSet;
 public class ConcurrentSkipListSetDemo {
     public static void main(String[] args) {
         ConcurrentSkipListSet<String> skipListSet = new ConcurrentSkipListSet();
+        skipListSet.add("123");
     }
 }

@@ -11,7 +11,7 @@ import java.util.concurrent.locks.ReentrantLock;
  * <p>
  * 因为Condition是配合锁lock使用的,线程在获取锁后需要进行等待或者通知时，实际就作出是否让出锁的操作，所有由锁对象执行方法（newCondition()）创建Condition对象就显得很合理；
  * <p>
- * condition内部维护了一个 等待队列，所有调用condition.await方法的线程会加入到等待队列中，并且线程状态转换为等待状态。
+ * condition内部维护了一个等待队列，所有调用condition.await方法的线程会加入到等待队列中，并且线程状态转换为等待状态。
  * <p>
  * 当前线程执行condition.await()方法时，因为已经获取锁了，所以已经从AQS的等待队列中移除，同时当前线程将会加入ConditionObject对象的等待队列中；
  * 直到有线程执行了condition.signal()/condition.signalAll()方法，在方法内部逻辑中会重新将将要唤醒的线程加入到AQS节点链表中的尾节点；然后执行线程唤醒操作；
