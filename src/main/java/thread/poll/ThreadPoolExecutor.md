@@ -4,11 +4,11 @@
 ```text
 
 import java.util.*;
-import java.util.concurrent.*;
-import java.util.concurrent.atomic.AtomicInteger;
-import java.util.concurrent.locks.AbstractQueuedSynchronizer;
-import java.util.concurrent.locks.Condition;
-import java.util.concurrent.locks.ReentrantLock;
+import java.util.collection.concurrent.*;
+import java.util.collection.concurrent.atomic.AtomicInteger;
+import java.util.collection.concurrent.locks.AbstractQueuedSynchronizer;
+import java.util.collection.concurrent.locks.Condition;
+import java.util.collection.concurrent.locks.ReentrantLock;
 
 /**
  * ThreadPoolExecutor 线程池核心源码分析注释

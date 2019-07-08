@@ -1,4 +1,4 @@
-package collection;
+package collection.concurrent;
 
 import java.util.concurrent.CopyOnWriteArrayList;
 
