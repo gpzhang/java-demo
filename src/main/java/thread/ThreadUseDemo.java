@@ -1,7 +1,5 @@
 package thread;
 
-import thread.poll.ThreadPoolDemo;
-
 /**
  * @author haishen
  * @date 2019/7/11
