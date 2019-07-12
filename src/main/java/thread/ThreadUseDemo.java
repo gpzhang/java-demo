@@ -6,7 +6,7 @@ import thread.poll.ThreadPoolDemo;
  * @author haishen
  * @date 2019/7/11
  */
-public class ThreadDemo {
+public class ThreadUseDemo {
 
     /**
      * 两个线程交替减2、减3
