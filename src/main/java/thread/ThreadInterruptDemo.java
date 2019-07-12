@@ -22,11 +22,17 @@ package thread;
 public class ThreadInterruptDemo {
 
     public static void main(String[] args) {
-        Thread thread = new Thread(new MyInterruptUnBlockThread());
-        thread.start();
-        thread.interrupt();
+        Thread unBlockThread = new Thread(new MyInterruptUnBlockThread());
+        unBlockThread.start();
+        unBlockThread.interrupt();
 
-        System.out.println("执行了对线程:{" + thread.getName() + "}的中断操作！！！");
+        System.out.println("01执行了对线程:{" + unBlockThread.getName() + "}的中断操作！！！");
+
+        Thread blockThread = new Thread(new MyInterruptBlockThread());
+        blockThread.start();
+        blockThread.interrupt();
+        System.out.println("02执行了对线程:{" + blockThread.getName() + "}的中断操作！！！");
+
 
     }
 
@@ -40,11 +46,11 @@ public class ThreadInterruptDemo {
         @Override
         public void run() {
             while (true) {
-//                if (Thread.interrupted()) {
-//                    System.out.println("线程被设置中断，干点啥？");
-//                }
                 if (Thread.currentThread().isInterrupted()) {
-                    System.out.println("线程被设置中断，干点啥？");
+                    System.out.println("线程被设置中断，不清除中断状态，干点啥？");
+                }
+                if (Thread.interrupted()) {
+                    System.out.println("线程被设置中断，清除中断状态，干点啥？");
                 }
                 long i = 0;
                 do {
@@ -70,7 +76,7 @@ public class ThreadInterruptDemo {
                 try {
                     Thread.sleep(5 * 1000);
                 } catch (InterruptedException e) {
-                    System.out.println("线程阻塞时，线程被设置中断，只能抛异常，catch后在自己看这办！！！  " + Thread.currentThread().isInterrupted());
+                    System.out.println("线程阻塞时，线程被设置中断，只能抛异常，catch后再自己看这办！！！  " + Thread.currentThread().isInterrupted());
                 }
                 System.out.println("当前线程疯狂执行中！！！" + Thread.currentThread().isInterrupted());
             }

@@ -3,8 +3,9 @@ package thread;
 /**
  * @author haishen
  * @date 2019/3/3
+ * join执行后线程进入阻塞状态
  */
-public class ThreadJoinTest {
+public class ThreadJoinDemo {
     public static void main(String[] args) {
         Thread previousThread = Thread.currentThread();
         for (int i = 1; i <= 10; i++) {

@@ -63,7 +63,7 @@ public class MyClassLoader extends ClassLoader {
 
     @Override
     protected Class<?> findClass(String name) throws ClassNotFoundException {
-        File file = new File("/Users/haishen/study/java-demo/target/classes/Main.class");
+        File file = new File("/Users/haishen/study/java-demo/target/classes/MainDemo.class");
 //        File file = new File("/Users/haishen/data/HaiShen.class");
 
         try {

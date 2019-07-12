@@ -78,10 +78,10 @@ public class ServerSocketChannelDemo {
         Selector selector = null;
         ServerSocketChannel ssc = null;
         try {
-            selector = Selector.open();
             ssc = ServerSocketChannel.open();
-            ssc.socket().bind(new InetSocketAddress(PORT));
             ssc.configureBlocking(false);
+            ssc.socket().bind(new InetSocketAddress(PORT));
+            selector = Selector.open();
             ssc.register(selector, SelectionKey.OP_ACCEPT);
             while (true) {
                 if (selector.select(TIMEOUT) == 0) {

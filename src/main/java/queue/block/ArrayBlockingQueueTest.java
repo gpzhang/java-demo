@@ -6,6 +6,11 @@ import java.util.concurrent.TimeUnit;
 /**
  * @author haishen
  * @date 2019/2/26
+ * 队列的表示形式：数组
+ * 阻塞的原因：基于Condition实现队列空和队列满的线程等待
+ * 线程安全的原因：基于ReentrantLock可重入锁的来控制并发访问
+ * 指定队列的大小，不可以动态扩容
+ * <p>
  * 一个由数组支持的有界阻塞队列，在ArrayBlockingQueue内部，维护了一个定长数组，
  * 以便缓存队列中的数据对象。此队列按 FIFO（先进先出）原则对元素进行排序。
  * 创建其对象必须明确大小，像数组一样。在创建ArrayBlockingQueue时，

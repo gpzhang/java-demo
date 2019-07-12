@@ -35,7 +35,7 @@ import java.util.concurrent.*;
  */
 
 
-public class CreateThread {
+public class CreateThreadDemo {
     public static void main(String[] args) {
         //1.继承Thread
         Thread thread = new Thread() {
