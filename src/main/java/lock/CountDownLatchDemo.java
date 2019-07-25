@@ -1,6 +1,6 @@
 package lock;
 
-import thread.poll.FixedThreadPool;
+import thread.poll.MyThreadPool;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -33,7 +33,7 @@ public class CountDownLatchDemo {
             workers[i] = new Worker("工作线程:" + i, selfDownLatch, countDownLatch);
         }
 
-        FixedThreadPool fixedThreadPool = new FixedThreadPool();
+        MyThreadPool fixedThreadPool = new MyThreadPool();
         ExecutorService executorService = fixedThreadPool.getExecutorService();
         //提交到线程池,分配线程
         for (Worker worker : workers) {

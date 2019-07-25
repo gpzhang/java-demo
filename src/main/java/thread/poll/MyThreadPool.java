@@ -7,7 +7,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  * @author haishen
  * @date 2019/03/01
  */
-public class FixedThreadPool {
+public class MyThreadPool {
 
     /**
      * 核心线程数
@@ -26,9 +26,9 @@ public class FixedThreadPool {
 
     private volatile static ExecutorService executorService;
 
-    public FixedThreadPool() {
+    public MyThreadPool() {
         if (executorService == null) {
-            synchronized (FixedThreadPool.class) {
+            synchronized (MyThreadPool.class) {
                 if (executorService == null) {
                     BlockingQueue<Runnable> workQueue = new ArrayBlockingQueue<>(CORE_POOL_SIZE);
                     executorService = new ThreadPoolExecutor(CORE_POOL_SIZE, MAX_POOL_SIZE, KEEP_ALIVE_TIME, TimeUnit.SECONDS,

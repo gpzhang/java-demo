@@ -37,6 +37,8 @@ import java.util.concurrent.*;
 
 public class CreateThreadDemo {
     public static void main(String[] args) {
+
+        System.out.println(Integer.MAX_VALUE);
         //1.继承Thread
         Thread thread = new Thread() {
             @Override

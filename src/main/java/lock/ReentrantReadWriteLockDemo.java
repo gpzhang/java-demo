@@ -16,7 +16,7 @@ public class ReentrantReadWriteLockDemo {
     }
 
     /**
-     * 写锁的获取和释放demo（共享锁）
+     * 读锁的获取和释放demo（共享锁）
      */
     private static void readLock() {
         for (int i = 0; i < 5; i++) {

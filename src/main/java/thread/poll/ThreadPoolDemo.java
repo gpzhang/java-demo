@@ -17,6 +17,16 @@ public class ThreadPoolDemo {
     private static final int TERMINATED = 3 << COUNT_BITS;
 
     public static void main(String[] args) throws InterruptedException {
+        /**
+         * java类库支持的线程池实现
+         * SingleThreadExecutor和FixedThreadPool 等待队列链式存储，可能会oom
+         * CachedThreadPool和ScheduledThreadPool 最大线程池数量为Integer.MAX_VALUE
+         */
+        ExecutorService executorService01 = Executors.newSingleThreadExecutor();
+        ExecutorService executorService03 = Executors.newFixedThreadPool(10);
+        ExecutorService executorService02 = Executors.newCachedThreadPool();
+        ExecutorService executorService04 = Executors.newScheduledThreadPool(10);
+
         System.out.println("COUNT_BITS   :Integer.SIZE - 3     --->" + Integer.toBinaryString(COUNT_BITS));
         System.out.println("CAPACITY     :(1 << COUNT_BITS) - 1--->000" + Integer.toBinaryString(CAPACITY));
         System.out.println("RUNNING      :-1 << COUNT_BITS     --->" + Integer.toBinaryString(RUNNING));
@@ -25,9 +35,10 @@ public class ThreadPoolDemo {
         System.out.println("TIDYING      : 2 << COUNT_BITS     --->0" + Integer.toBinaryString(TIDYING));
         System.out.println("TERMINATED   : 3 << COUNT_BITS     --->0" + Integer.toBinaryString(TERMINATED));
 
-        FixedThreadPool fixedThreadPool = new FixedThreadPool();
-        ExecutorService executorService = fixedThreadPool.getExecutorService();
+        MyThreadPool myThreadPool = new MyThreadPool();
+        ExecutorService executorService = myThreadPool.getExecutorService();
         System.out.println("获取ExecutorService:" + executorService);
+
         executorService.execute(new Runnable() {
             @Override
             public void run() {

@@ -18,13 +18,19 @@ import java.util.concurrent.locks.ReentrantLock;
  * 非公平锁和公平锁的不同在于获取锁状态时增加了hasQueuedPredecessors的逻辑判断（当前节点是否存在前驱节点）
  */
 public class ReentrantLockDemo {
-    //默认非公平锁
+    /**
+     * 默认非公平锁
+     */
     private static ReentrantLock defaultUnfairLock = new ReentrantLock();
 
-    //创建公平锁
+    /**
+     * 创建公平锁
+     */
     private static ReentrantLock fairLock = new ReentrantLock(true);
 
-    //显式创建非公平锁
+    /**
+     * 显式创建非公平锁
+     */
     private static ReentrantLock unfairLock = new ReentrantLock(false);
 
     public static void main(String[] args) {
