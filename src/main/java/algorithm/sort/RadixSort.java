@@ -1,5 +1,8 @@
 package algorithm.sort;
 
+/**
+ * @author haishen
+ */
 public class RadixSort {
 
     public int getDigit(int x, int d) {

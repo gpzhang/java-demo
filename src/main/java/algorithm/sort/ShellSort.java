@@ -2,6 +2,9 @@ package algorithm.sort;
 
 import java.util.Arrays;
 
+/**
+ * @author haishen
+ */
 public class ShellSort {
     public byte[] Sort(byte[] by) {
         int d = by.length;
@@ -46,5 +49,15 @@ public class ShellSort {
             }
         }
         return by;
+    }
+
+    public static void main(String[] args) {
+
+
+        byte[] by3 = new byte[]{6, 9, 11, 3, 4, 15, 13, 10};
+        /*希尔*/
+        ShellSort ss = new ShellSort();
+        ss.Sort(by3);
+
     }
 }

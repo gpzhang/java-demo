@@ -2,6 +2,9 @@ package algorithm.sort;
 
 import java.util.Arrays;
 
+/**
+ * 基础排序算法的java实现
+ */
 public class Test {
     public static void main(String[] args) {
 
@@ -13,13 +16,13 @@ public class Test {
 
         System.out.println("*********************快速*********************");
         byte[] by1 = new byte[]{6, 9, 11, 3, 4, 15, 13, 10};
-		/*快速*/
+        /*快速*/
         QuickSort qs = new QuickSort();
         System.out.println(Arrays.toString(qs.quick(by1)));
 
         System.out.println("********************插入**********************");
         byte[] by2 = new byte[]{6, 9, 11, 3, 4, 15, 13, 10};
-		/*插入*/
+        /*插入*/
         InsertSort is = new InsertSort();
         is.Sort(by2);
 

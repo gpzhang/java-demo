@@ -2,6 +2,9 @@ package algorithm.sort;
 
 import java.util.Arrays;
 
+/**
+ * @author haishen
+ */
 public class MergeSort {
 
     public void Merge(int[] array, int low, int mid, int high) {
@@ -64,6 +67,14 @@ public class MergeSort {
             System.out.println("" + (++cishu) + "" + Arrays.toString(list));
         }
         return list;
+    }
+
+    public static void main(String[] args) {
+
+		/*归并排序*/
+        int[] by5 = new int[]{6, 9, 11, 3, 4, 15, 13, 10, 18};
+        MergeSort merge = new MergeSort();
+        merge.Sort(by5);
     }
 
 }
