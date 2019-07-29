@@ -3,6 +3,8 @@ package algorithm.sort;
 import java.util.Arrays;
 
 /**
+ * 基本操作是将一个记录插入到有序集中
+ *
  * @author haishen
  */
 public class InsertSort {
@@ -12,7 +14,7 @@ public class InsertSort {
             int temp = by[i];
             int j = i;
             while (j > 0 && by[j - 1] > temp) {
-                by[j] = by[j - 1];
+                by[j] = by[j - 1];//大于带插入记录的记录后移一位
                 j--;
             }
             by[j] = (byte) temp;
