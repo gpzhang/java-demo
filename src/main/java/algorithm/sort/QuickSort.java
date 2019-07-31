@@ -25,11 +25,13 @@ public class QuickSort {
     private int getMiddle(byte[] by, int low, int high) {
         int temp = by[low];
         while (low < high) {
+            //从高位递减,找到第一个小于比较基数的元素，并将比较基数置于对应低位
             while (low < high && by[high] >= temp) {
                 high--;
             }
             by[low] = by[high];
 
+            //从低位递增,找到第一个不小于比较基数的元素，并将比较基数置于对应高位
             while (low < high && by[low] <= temp) {
                 low++;
             }

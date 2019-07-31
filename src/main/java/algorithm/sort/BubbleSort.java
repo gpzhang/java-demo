@@ -11,8 +11,9 @@ import java.util.Arrays;
  */
 public class BubbleSort {
     public byte[] Sort(byte[] by) {
+        //从头开始遍历所有元素
         for (int i = 0; i < by.length; i++) {
-            //
+            //遍历到的元素依次和剩下的元素比较大小，每次比较如果前面的大于后面的，则把交换相邻的两个元素，最大的元素沉到后面
             for (int j = 0; j < by.length - i - 1; j++) {
                 if (by[j] > by[j + 1]) {
                     byte temp = by[j + 1];

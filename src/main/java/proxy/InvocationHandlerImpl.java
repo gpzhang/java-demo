@@ -7,11 +7,11 @@ import java.lang.reflect.Method;
  * @author haishen
  * @date 2018/5/13
  */
-public class HelloProxy implements InvocationHandler {
+public class InvocationHandlerImpl implements InvocationHandler {
 
     public Object target;
 
-    public HelloProxy(Object target) {
+    public InvocationHandlerImpl(Object target) {
         this.target = target;
     }
 
