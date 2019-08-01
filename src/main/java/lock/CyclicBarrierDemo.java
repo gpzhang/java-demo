@@ -24,6 +24,7 @@ public class CyclicBarrierDemo {
 
     public static void main(String[] args) {
         final int totalThread = 3;
+        //栅栏，相当于跑道，一个线程对应一个跑道，所以数量是一样的
         CyclicBarrier cyclicBarrier = new CyclicBarrier(totalThread);
         //添加工人,创建执行线程数组
         Worker[] workers = new Worker[totalThread];
@@ -31,8 +32,8 @@ public class CyclicBarrierDemo {
             workers[i] = new Worker("工作线程:" + i, cyclicBarrier);
         }
 
-        MyThreadPool fixedThreadPool = new MyThreadPool();
-        ExecutorService executorService = fixedThreadPool.getExecutorService();
+        MyThreadPool myThreadPool = new MyThreadPool();
+        ExecutorService executorService = myThreadPool.getExecutorService();
         //提交到线程池,分配线程
         for (Worker worker : workers) {
             executorService.execute(worker);

@@ -23,8 +23,10 @@ public class CountDownLatchDemo {
     private static final Random RANDOM = new Random();
 
     public static void main(String[] args) throws InterruptedException {
+
         int selfCompleteNum = 1;
         int allCompleteNum = 5;
+        //倒计时
         CountDownLatch selfDownLatch = new CountDownLatch(selfCompleteNum);
         CountDownLatch countDownLatch = new CountDownLatch(allCompleteNum);
         //添加工人,创建执行线程数组
@@ -33,8 +35,8 @@ public class CountDownLatchDemo {
             workers[i] = new Worker("工作线程:" + i, selfDownLatch, countDownLatch);
         }
 
-        MyThreadPool fixedThreadPool = new MyThreadPool();
-        ExecutorService executorService = fixedThreadPool.getExecutorService();
+        MyThreadPool myThreadPool = new MyThreadPool();
+        ExecutorService executorService = myThreadPool.getExecutorService();
         //提交到线程池,分配线程
         for (Worker worker : workers) {
             executorService.execute(worker);
