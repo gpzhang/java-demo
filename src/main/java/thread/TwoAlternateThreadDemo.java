@@ -4,7 +4,7 @@ package thread;
  * @author haishen
  * @date 2019/7/11
  */
-public class ThreadUseDemo {
+public class TwoAlternateThreadDemo {
 
     /**
      * 两个线程交替减2、减3
@@ -13,7 +13,7 @@ public class ThreadUseDemo {
     private static int two = 2;
     private static int three = 3;
 
-    private static String ss = "dd";
+    private static String objectLock = "dd";
 
 
     public static void main(String[] args) throws InterruptedException {
@@ -41,22 +41,23 @@ public class ThreadUseDemo {
         public void run() {
             while (true) {
 
-                synchronized (ss) {
+                synchronized (objectLock) {
                     if (COUNT_BITS >= num) {
                         COUNT_BITS = COUNT_BITS - num;
                         System.out.println(Thread.currentThread().getName() + "拿走" + num + "个，还剩：" + COUNT_BITS);
-                        ss.notify();
+                        objectLock.notify();
                         try {
-                            ss.wait();
+                            Thread.sleep(3000L);
+                            objectLock.wait();
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
                     } else {
                         System.out.println(Thread.currentThread().getName() + "剩余" + COUNT_BITS + "个不够拿");
                         try {
-                            ss.notify();
-                            Thread.sleep(30000L);
-                            ss.wait();
+                            objectLock.notify();
+                            Thread.sleep(3000L);
+                            objectLock.wait();
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
