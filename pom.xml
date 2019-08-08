@@ -14,6 +14,14 @@
         <file_encoding>UTF-8</file_encoding>
     </properties>
 
+    <dependencies>
+        <dependency>
+            <groupId>cglib</groupId>
+            <artifactId>cglib</artifactId>
+            <version>3.2.4</version>
+        </dependency>
+    </dependencies>
+
     <build>
         <plugins>
             <!-- Java Compiler -->
