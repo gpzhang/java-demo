@@ -9,7 +9,7 @@ import java.io.FileNotFoundException;
  * @date 2019/8/13
  * 异常体系
  * <p>
- * RuntimeException 是不可以检查的异常，也就是编译代码的过程中编译器检查不出来，也不会去检查
+ * RuntimeException 是不检查的异常，也就是编译代码的过程中编译器检不会去检查
  * Exception 体系下除了RuntimeException其他的都是可以在代码编译过程中进行异常检查的，
  * 所以我们的代码中要对这类异常显示的进行异常处理
  * <p>
