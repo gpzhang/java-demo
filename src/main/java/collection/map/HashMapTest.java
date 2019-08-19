@@ -3,7 +3,6 @@ package collection.map;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
-import java.util.Set;
 
 /**
  * @author haishen
@@ -31,26 +30,35 @@ public class HashMapTest {
 //        hashMap.clear();
         System.out.println(hashMap.size());
 
-        Set keys = hashMap.keySet();
-        Iterator ite = keys.iterator();
-        while (ite.hasNext()) {
-            String key = (String) ite.next();
-            System.out.println("key:{" + key + "}--->value:{" + hashMap.get(key) + "}");
-        }
-
+        /**
+         * 遍历方式
+         */
         System.out.println("=============");
 
-        //代码片段中用 foreach 遍历 keySet 方法产生的集合，在编译时会转换成用迭代器遍历，等价上面的遍历方式：
+        //1、foreach key集合，代码片段中用 foreach 遍历 keySet 方法产生的集合，在编译时会转换成用迭代器遍历，等价上面的遍历方式：
         for (String key : hashMap.keySet()) {
             System.out.println("key:{" + key + "}--->value:{" + hashMap.get(key) + "}");
         }
 
         System.out.println("**************");
 
-        Set entrySet = hashMap.entrySet();
-        Iterator iterator = entrySet.iterator();
-        while (iterator.hasNext()) {
-            Map.Entry<String, String> entry = (Map.Entry) iterator.next();
+        //2、foreach entry集合
+        for (Map.Entry<String, String> entry : hashMap.entrySet()) {
+            System.out.println("key:{" + entry.getKey() + "}--->value:{" + entry.getValue() + "}");
+        }
+
+        //3、while循环key（迭代器）
+        Iterator keyIte = hashMap.keySet().iterator();
+        while (keyIte.hasNext()) {
+            String key = (String) keyIte.next();
+            System.out.println("key:{" + key + "}--->value:{" + hashMap.get(key) + "}");
+        }
+
+
+        //4、while循环entry（迭代器）
+        Iterator entryIte = hashMap.entrySet().iterator();
+        while (entryIte.hasNext()) {
+            Map.Entry<String, String> entry = (Map.Entry) entryIte.next();
             System.out.println("key:{" + entry.getKey() + "}--->value:{" + entry.getValue() + "}");
         }
     }
