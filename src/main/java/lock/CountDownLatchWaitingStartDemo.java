@@ -16,7 +16,7 @@ import java.util.concurrent.ExecutorService;
  *
  * @author haishen
  * @date 2019/7/2
- * 控制，等待全部线程开始demo
+ * 控制，多个线程等待一个线程执行完，等待全部线程开始demo
  * 先wait，再减一
  */
 public class CountDownLatchWaitingStartDemo {
