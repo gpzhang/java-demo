@@ -9,6 +9,8 @@ import java.util.Set;
  *
  * @author haishen
  * @date 2019/2/26
+ *
+ * 2，hashSet去重原理：1，hashCode 2，equals是否相同
  */
 public class HashSetTest {
     public static void main(String[] args) {
