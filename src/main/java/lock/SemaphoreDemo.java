@@ -18,29 +18,34 @@ import java.util.concurrent.TimeUnit;
 public class SemaphoreDemo {
 
     /**
-     * 表示老师只有10支笔
+     * 表示许可证个数
      */
-    private static Semaphore semaphore = new Semaphore(5);
+    private static Semaphore semaphore = new Semaphore(1);
 
     public static void main(String[] args) {
 
-
         ExecutorService service = Executors.newFixedThreadPool(10);
         for (int i = 0; i < 10; i++) {
-            service.execute(() -> {
-                try {
-                    System.out.println(Thread.currentThread().getName() + "  同学准备获取笔......");
-                    semaphore.acquire();
-                    System.out.println(Thread.currentThread().getName() + "  同学获取到笔");
-                    System.out.println(Thread.currentThread().getName() + "  填写表格ing.....");
-                    TimeUnit.SECONDS.sleep(3);
-                    semaphore.release();
-                    System.out.println(Thread.currentThread().getName() + "  填写完表格，归还了笔！！！！！！");
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            });
+            service.execute(new Thread(new Worker()));
         }
         service.shutdown();
+    }
+
+    private static class Worker implements Runnable {
+
+        @Override
+        public void run() {
+            try {
+                System.out.println(Thread.currentThread().getName() + "  同学准备获取笔......");
+                semaphore.acquire();
+                TimeUnit.SECONDS.sleep(2);
+                System.out.println(Thread.currentThread().getName() + "  同学获取到笔,填写表格ing.....");
+                TimeUnit.SECONDS.sleep(3);
+                semaphore.release();
+                System.out.println(Thread.currentThread().getName() + "  填写完表格，归还了笔！");
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }
