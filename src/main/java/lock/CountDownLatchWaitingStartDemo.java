@@ -16,12 +16,10 @@ import java.util.concurrent.ExecutorService;
  *
  * @author haishen
  * @date 2019/7/2
- * 控制全部线程等待就绪
- * 控制全部线程执行完成
- * <p>
- * 侧重有且只有一批的线程执行，不可复用
+ * 控制，等待全部线程开始demo
+ * 先wait，再减一
  */
-public class CountDownLatchDemo {
+public class CountDownLatchWaitingStartDemo {
 
     private static final String FORMAT = "yy-MM-dd HH:mm:ss";
     private static final Random RANDOM = new Random();
@@ -32,11 +30,10 @@ public class CountDownLatchDemo {
         int allCompleteNum = 5;
         //倒计时
         CountDownLatch selfDownLatch = new CountDownLatch(selfCompleteNum);
-        CountDownLatch countDownLatch = new CountDownLatch(allCompleteNum);
         //添加工人,创建执行线程数组
         Worker[] workers = new Worker[allCompleteNum];
         for (int i = 0; i < allCompleteNum; i++) {
-            workers[i] = new Worker("工作线程:" + i, selfDownLatch, countDownLatch);
+            workers[i] = new Worker("工作线程:" + i, selfDownLatch);
         }
 
         MyThreadPool myThreadPool = new MyThreadPool();
@@ -47,9 +44,6 @@ public class CountDownLatchDemo {
         }
         //一起开始工作，所以每个线程的执行内部要等待，等到全部线程就绪，
         selfDownLatch.countDown();
-        //等待全部完成工作，所以每个线程的执行内部要对计数器减一
-        countDownLatch.await();
-        System.out.println(countDownLatch.getCount());
         executorService.shutdown();
         System.out.println("均完成后的时间：" + getFormat(new Date()));
     }
@@ -62,12 +56,10 @@ public class CountDownLatchDemo {
     private static class Worker extends Thread {
         private String workName;
         private CountDownLatch selfLatch;
-        private CountDownLatch latch;
 
-        public Worker(String workName, CountDownLatch selfLatch, CountDownLatch latch) {
+        public Worker(String workName, CountDownLatch selfLatch) {
             this.workName = workName;
             this.selfLatch = selfLatch;
-            this.latch = latch;
         }
 
         @Override
@@ -85,9 +77,6 @@ public class CountDownLatchDemo {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             } finally {
-                //每个线程的执行完，内部要对计数器减一
-                latch.countDown();
-                System.out.println("Worker " + workName + " CountDownLatch count " + latch.getCount());
             }
         }
     }

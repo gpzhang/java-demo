@@ -16,27 +16,23 @@ import java.util.concurrent.ExecutorService;
  *
  * @author haishen
  * @date 2019/7/2
- * 控制全部线程等待就绪
- * 控制全部线程执行完成
- * <p>
- * 侧重有且只有一批的线程执行，不可复用
+ * 控制，等待全部线程执行完成的demo
+ * 先减一，再wait
  */
-public class CountDownLatchDemo {
+public class CountDownLatchWaitingOverDemo {
 
     private static final String FORMAT = "yy-MM-dd HH:mm:ss";
     private static final Random RANDOM = new Random();
 
     public static void main(String[] args) throws InterruptedException {
 
-        int selfCompleteNum = 1;
         int allCompleteNum = 5;
         //倒计时
-        CountDownLatch selfDownLatch = new CountDownLatch(selfCompleteNum);
         CountDownLatch countDownLatch = new CountDownLatch(allCompleteNum);
         //添加工人,创建执行线程数组
         Worker[] workers = new Worker[allCompleteNum];
         for (int i = 0; i < allCompleteNum; i++) {
-            workers[i] = new Worker("工作线程:" + i, selfDownLatch, countDownLatch);
+            workers[i] = new Worker("工作线程:" + i, countDownLatch);
         }
 
         MyThreadPool myThreadPool = new MyThreadPool();
@@ -45,10 +41,9 @@ public class CountDownLatchDemo {
         for (Worker worker : workers) {
             executorService.execute(worker);
         }
-        //一起开始工作，所以每个线程的执行内部要等待，等到全部线程就绪，
-        selfDownLatch.countDown();
-        //等待全部完成工作，所以每个线程的执行内部要对计数器减一
+        //等待全部完成工作，主线程才往下执行
         countDownLatch.await();
+        System.out.println("线程全部完成工作");
         System.out.println(countDownLatch.getCount());
         executorService.shutdown();
         System.out.println("均完成后的时间：" + getFormat(new Date()));
@@ -61,12 +56,10 @@ public class CountDownLatchDemo {
 
     private static class Worker extends Thread {
         private String workName;
-        private CountDownLatch selfLatch;
         private CountDownLatch latch;
 
-        public Worker(String workName, CountDownLatch selfLatch, CountDownLatch latch) {
+        public Worker(String workName, CountDownLatch latch) {
             this.workName = workName;
-            this.selfLatch = selfLatch;
             this.latch = latch;
         }
 
@@ -79,8 +72,6 @@ public class CountDownLatchDemo {
 
         private void doWork() {
             try {
-                //一起开始工作，所以每个线程的执行内部要等待
-                selfLatch.await();
                 Thread.sleep(RANDOM.nextInt(6) * 1000 + 1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();

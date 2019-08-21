@@ -16,6 +16,9 @@ import java.util.concurrent.ExecutorService;
  *
  * @author haishen
  * @date 2019/7/2
+ * <p>
+ * 栅栏 等待线程达到预设值就释放等待
+ * 侧重一批一批的线程执行，可复用
  */
 public class CyclicBarrierDemo {
 
@@ -23,10 +26,11 @@ public class CyclicBarrierDemo {
     private static final Random RANDOM = new Random();
 
     public static void main(String[] args) {
-        final int totalThread = 3;
-        //栅栏，相当于跑道，一个线程对应一个跑道，所以数量是一样的
-        CyclicBarrier cyclicBarrier = new CyclicBarrier(totalThread);
-        //添加工人,创建执行线程数组
+        int barrierNum = 3;
+        int totalThread = barrierNum * 2;
+        //栅栏，相当于跑道，一个线程对应一个跑道，
+        CyclicBarrier cyclicBarrier = new CyclicBarrier(barrierNum);
+        //添加工人,创建执行线程数组,小于栅栏数会一致等待到线程足够,超过栅栏数的线程放在下一批执行
         Worker[] workers = new Worker[totalThread];
         for (int i = 0; i < totalThread; i++) {
             workers[i] = new Worker("工作线程:" + i, cyclicBarrier);
@@ -38,6 +42,7 @@ public class CyclicBarrierDemo {
         for (Worker worker : workers) {
             executorService.execute(worker);
         }
+        executorService.shutdown();
     }
 
     private static class Worker extends Thread {
@@ -55,16 +60,16 @@ public class CyclicBarrierDemo {
         }
 
         private void doWork() {
-            System.out.println("Worker " + workName + " 进入等待状态 at " + getFormat(new Date()));
+            System.out.println("Worker :[" + workName + " ] 进入等待状态 at " + getFormat(new Date()));
             try {
                 cyclicBarrier.await();
-                Thread.sleep(RANDOM.nextInt(6) * 1000 + 1000);
+                Thread.sleep(RANDOM.nextInt(6) * 1000 + 5000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             } catch (BrokenBarrierException e) {
                 e.printStackTrace();
             }
-            System.out.println("Worker " + workName + " do work complete at " + getFormat(new Date()));
+            System.out.println("Worker :[" + workName + " ] do work complete at " + getFormat(new Date()));
 
         }
     }
