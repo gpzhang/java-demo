@@ -39,7 +39,7 @@ public class SemaphoreDemo {
                 System.out.println(Thread.currentThread().getName() + "  同学准备获取笔......");
                 semaphore.acquire();
                 TimeUnit.SECONDS.sleep(2);
-                System.out.println(Thread.currentThread().getName() + "  同学获取到笔,填写表格ing.....");
+                System.out.println(Thread.currentThread().getName() + "  同学获取到笔，填写表格ing.....");
                 TimeUnit.SECONDS.sleep(3);
                 semaphore.release();
                 System.out.println(Thread.currentThread().getName() + "  填写完表格，归还了笔！");
