@@ -27,6 +27,21 @@ public class FutureDemo {
         for (int i = 0; i < 10; i++) {
             results.add(es.submit(new MyTask()));
         }
+        boolean done = false;
+        do {
+            for (Future<String> f : results) {
+                //判断任务是否全部执行完成，连续全部执行完成才算完成
+                System.out.println("任务是否执行完成：" + f.isDone());
+                if (f.isDone()) {
+                    done = true;
+                } else {
+                    done = false;
+                    break;
+                }
+            }
+            Thread.sleep(1 * 1000L);
+        } while (!done);
+
         // 获取执行结果
         for (Future<String> f : results) {
             System.out.println(f.get());
