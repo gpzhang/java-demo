@@ -1,5 +1,6 @@
 package thread.poll;
 
+import java.util.Random;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -35,46 +36,31 @@ public class ThreadPoolDemo {
         System.out.println("TIDYING      : 2 << COUNT_BITS     --->0" + Integer.toBinaryString(TIDYING));
         System.out.println("TERMINATED   : 3 << COUNT_BITS     --->0" + Integer.toBinaryString(TERMINATED));
 
+
         MyThreadPool myThreadPool = new MyThreadPool();
         ExecutorService executorService = myThreadPool.getExecutorService();
         System.out.println("获取ExecutorService:" + executorService);
 
-        executorService.execute(new Runnable() {
-            @Override
-            public void run() {
-                System.out.println(Thread.currentThread().getName() + "1开始执行！");
-                try {
-                    Thread.sleep(20 * 1000L);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                System.out.println(Thread.currentThread().getName() + "1结束执行！");
-            }
-        });
-        executorService.execute(new Runnable() {
-            @Override
-            public void run() {
-                System.out.println(Thread.currentThread().getName() + "2开始执行！");
-                try {
-                    Thread.sleep(10 * 1000L);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                System.out.println(Thread.currentThread().getName() + "2结束执行！");
-            }
-        });
-        executorService.execute(new Runnable() {
-            @Override
-            public void run() {
-                System.out.println(Thread.currentThread().getName() + "3开始执行！");
-                try {
-                    Thread.sleep(5 * 1000L);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                System.out.println(Thread.currentThread().getName() + "3结束执行！");
-            }
-        });
+        executorService.execute(new MyRunnable());
+        executorService.execute(new MyRunnable());
+        executorService.execute(new MyRunnable());
         executorService.shutdown();
     }
+
+
+    static class MyRunnable implements Runnable {
+        @Override
+        public void run() {
+            System.out.println(Thread.currentThread().getName() + "开始执行！");
+            try {
+                Random random = new Random();
+                long time = random.nextInt(5) + 1;
+                Thread.sleep(time * 1000L);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            System.out.println(Thread.currentThread().getName() + "结束执行！");
+        }
+    }
+
 }
