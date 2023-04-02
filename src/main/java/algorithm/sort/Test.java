@@ -1,5 +1,11 @@
 package algorithm.sort;
 
+import algorithm.sort.insert.InsertSort;
+import algorithm.sort.insert.ShellSort;
+import algorithm.sort.quick.BubbleSort;
+import algorithm.sort.quick.QuickSort;
+import algorithm.sort.select.SelectSort;
+
 import java.util.Arrays;
 
 /**

@@ -1,6 +1,8 @@
-package algorithm.sort;
+package algorithm.sort.other;
 
 /**
+ * 基数排序，不需要进行位置交换
+ *
  * @author haishen
  */
 public class RadixSort {

@@ -1,4 +1,4 @@
-package algorithm.sort;
+package algorithm.sort.quick;
 
 import java.util.Arrays;
 
@@ -16,14 +16,25 @@ public class BubbleSort {
             //遍历到的元素依次和剩下的元素比较大小，每次比较如果前面的大于后面的，则把交换相邻的两个元素，最大的元素沉到后面
             for (int j = 0; j < by.length - i - 1; j++) {
                 if (by[j] > by[j + 1]) {
-                    byte temp = by[j + 1];
-                    by[j + 1] = by[j];
-                    by[j] = temp;
+                    swap(by, j, j + 1);
                 }
             }
             System.out.println("" + (i + 1) + "" + Arrays.toString(by));
         }
         return by;
+    }
+
+    /**
+     * 交换元素
+     *
+     * @param by
+     * @param indexA
+     * @param indexB
+     */
+    private void swap(byte[] by, int indexA, int indexB) {
+        byte temp = by[indexA];
+        by[indexA] = by[indexB];
+        by[indexB] = temp;
     }
 
     public static void main(String[] args) {

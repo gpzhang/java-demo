@@ -1,4 +1,4 @@
-package algorithm.sort;
+package algorithm.sort.insert;
 
 import java.util.Arrays;
 
@@ -9,6 +9,14 @@ import java.util.Arrays;
  */
 public class InsertSort {
 
+    /**
+     * 核心
+     * 1、从第一个元素开始进行插入
+     * 2、每次插入后，都保证了已经插入的位置前的所有元素都是有序的了
+     *
+     * @param by
+     * @return
+     */
     public byte[] Sort(byte[] by) {
         //从第二个元素开始遍历
         for (int i = 1; i < by.length; i++) {

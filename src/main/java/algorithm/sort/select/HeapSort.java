@@ -1,4 +1,4 @@
-package algorithm.sort;
+package algorithm.sort.select;
 
 /**
  * @author haishen

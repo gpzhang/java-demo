@@ -1,23 +1,25 @@
-package algorithm.sort;
+package algorithm.sort.quick;
 
 import java.util.Arrays;
 
 /**
  * @author haishen
- *         排序思想：
- *         <p>
- *         1，取一个元素作为基准数字，将数组分为左右两部分，左边是比它小的数字，右边是比它大的数字；
- *         <p>
- *         2，将左部分按照上面的思想再次进行划分成两部分，依次类推；
- *         <p>
- *         3，将右部分按照上面的思想再次进行划分成两部分，依次类推；
+ * 排序思想：
+ * 是对冒泡排序的一种改进
+ * <p>
+ * 1，取一个元素作为基准数字，将数组分为左右两部分，左边是比它小的数字，右边是比它大的数字；
+ * <p>
+ * 2，将左部分按照上面的思想再次进行划分成两部分，依次类推；
+ * <p>
+ * 3，将右部分按照上面的思想再次进行划分成两部分，依次类推；
  */
 public class QuickSort {
 
     public byte[] quick(byte[] by) {
-        if (by.length > 0) {
-            quickSort(by, 0, by.length - 1);
+        if (by == null || by.length == 0) {
+            return by;
         }
+        quickSort(by, 0, by.length - 1);
         return by;
     }
 
