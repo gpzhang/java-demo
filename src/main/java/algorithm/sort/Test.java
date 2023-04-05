@@ -46,7 +46,7 @@ public class Test {
 
         System.out.println("********************归并排序**********************");
 		/*归并排序*/
-        int[] by5 = new int[]{6, 9, 11, 3, 4, 15, 13, 10, 18};
+        byte[] by5 = new byte[]{6, 9, 11, 3, 4, 15, 13, 10, 18};
         MergeSort merge = new MergeSort();
         merge.Sort(by5);
     }

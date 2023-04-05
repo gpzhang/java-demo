@@ -51,12 +51,9 @@ public class QuickSort {
     }
 
     public static void main(String[] args) {
-
         byte[] by1 = new byte[]{6, 9, 11, 3, 4, 15, 13, 10};
         /*快速*/
         QuickSort qs = new QuickSort();
         System.out.println(Arrays.toString(qs.quick(by1)));
-
-
     }
 }
