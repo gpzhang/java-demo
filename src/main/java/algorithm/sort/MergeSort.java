@@ -39,7 +39,7 @@ public class MergeSort {
     }
 
     /**
-     * 用到了88题的合并2个有数组
+     * 用到了88题的合并2个数组
      *
      * @param nums1
      * @param m
