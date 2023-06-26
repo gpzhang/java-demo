@@ -12,6 +12,19 @@ import java.util.Arrays;
  */
 public class HeapSort {
 
+    public void heapSort(byte[] list) {
+        //1、通过调整的方式，创建堆
+        for (int i = list.length / 2 - 1; i >= 0; i--) {
+            HeapAdjust(list, i, list.length);
+        }
+        for (int i = list.length - 1; i > 0; i--) {
+            //2、交换元素，通过交换，使得最大的元素逐个沉底（即每一次堆调整后，第一个元素都是相对最大的）
+            swap(list, i, 0);
+            //3、堆调整
+            HeapAdjust(list, 0, i);
+        }
+    }
+
     /**
      * @param array
      * @param parent 父节点的索引
@@ -35,19 +48,6 @@ public class HeapSort {
             } else {
                 break;
             }
-        }
-    }
-
-    public void heapSort(byte[] list) {
-        //1、通过调整的方式，创建堆
-        for (int i = list.length / 2 - 1; i >= 0; i--) {
-            HeapAdjust(list, i, list.length);
-        }
-        for (int i = list.length - 1; i > 0; i--) {
-            //2、交换元素，通过交换，使得最大的元素逐个沉底（即每一次堆调整后，第一个元素都是相对最大的）
-            swap(list, i, 0);
-            //3、堆调整
-            HeapAdjust(list, 0, i);
         }
     }
 
